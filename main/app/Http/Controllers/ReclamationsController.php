@@ -6,15 +6,11 @@ use Illuminate\Http\Request;
 use App\Models\Reclamations;
 class ReclamationsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $reclamation = Reclamations::all();
-        return view (admin.reclamations.index)->with('reclamations', $reclamation);
+        $reclamations = Reclamations::all();
+        return view ('admin.reclamations.index',['reclamations' => $reclamations]);
     }
 
     /**

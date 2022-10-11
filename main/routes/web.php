@@ -1,7 +1,6 @@
 <?php
-
+use App\Http\Controllers\ReclamationsController;
 use Illuminate\Support\Facades\Route;
-use App\Controllers\ReclamationsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +20,4 @@ Route::get('/admin', function () {
     return view('/admin/layout');
 });
 
-Route :: resource("/reclamations",ReclamationsController::class);
+Route::resource("/reclamations", ReclamationsController::class);
