@@ -111,8 +111,12 @@
                                             <td>1</td>
                                             <td class="txt-oflo">{{$reclamations->objet}}</td>
                                             <td>{{$reclamations->message}}</td>
-                                            <td class="txt-oflo">{{$reclamations->datecreation}}</td>
-                                            <td><span class="text-success">{{$reclamations->statut}}</span></td>
+                                            <td class="txt-oflo">{{ date('d-m-Y H:i', strtotime($reclamations->datecreation))}}</td>
+                                            <td>@if($reclamations->statut == 0)
+                                                <span style="color: red">en cours</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-success"><i class="fa fa-check" aria-hidden="true"></i></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

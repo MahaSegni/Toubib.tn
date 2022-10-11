@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->text("reponse");
             $table->dateTime("datereponse");
+            $table->foreignId('reclamation_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->boolean('resolu')->nullable()->default(false);
 
         });
