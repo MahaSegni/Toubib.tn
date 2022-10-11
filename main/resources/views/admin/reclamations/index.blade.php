@@ -32,7 +32,7 @@
                                 </div>
                             </li>
                             @if (count($reclamations) != 0)
-                            <li class="ms-auto"><span class="counter text-success">{{ $reclamations }}</span></li>
+                            <li class="ms-auto"><span class="counter text-success">{{ count($reclamations) }}</span></li>
                             @else
                             <li class="ms-auto"><span class="counter text-success">0</span></li>
                             @endif
@@ -48,8 +48,8 @@
                                         style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                 </div>
                             </li>
-                            @if (count($reclamations) != 0)
-                            <li class="ms-auto"><span class="counter text-purple">{{ $reclamations }}</span></li>
+                            @if (count($terminer) != 0)
+                            <li class="ms-auto"><span class="counter text-purple">{{ count($terminer) }}</span></li>
                             @else
                             <li class="ms-auto"><span class="counter text-purple">0</span></li>
                             @endif
@@ -65,8 +65,8 @@
                                         style="display: inline-block; width: 67px; height: 30px; vertical-align: top;"></canvas>
                                 </div>
                             </li>
-                            @if (count($reclamations) != 0)
-                            <li class="ms-auto"><span class="counter text-info">{{ $reclamations }}</span></li>
+                            @if (count($encours) != 0 )
+                            <li class="ms-auto"><span class="counter text-info">{{ count($encours) }}</span></li>
                             @else
                             <li class="ms-auto"><span class="counter text-info">0</span></li>
                             @endif

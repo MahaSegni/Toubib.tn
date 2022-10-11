@@ -17,7 +17,10 @@ class ReclamationsFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'objet' => $this->faker->string(20),
+            'message' => $this->faker->text(200),
+            'datecreation' => $this->faker->dateTime()->default(new DateTime()),
+            'statut' => $this->faker->boolean(0),
         ];
     }
 }

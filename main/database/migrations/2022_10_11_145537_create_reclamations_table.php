@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("objet");
             $table->text("message");
             $table->boolean('statut')->nullable()->default(false);
-            $table->timestamp("datecreation");
-            
+            $table->dateTime("datecreation");
+
         });
     }
 

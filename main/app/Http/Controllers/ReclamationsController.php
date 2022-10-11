@@ -9,8 +9,11 @@ class ReclamationsController extends Controller
 
     public function index()
     {
+        $encours=0;
         $reclamations = Reclamations::all();
-        return view ('admin.reclamations.index',['reclamations' => $reclamations]);
+        $encours = Reclamations::whereStatut(0)->get();
+        $terminer = Reclamations::whereStatut(1)->get();
+        return view ('admin.reclamations.index',['reclamations' => $reclamations, 'encours'=> $encours, 'terminer'=>$terminer]);
     }
 
     /**

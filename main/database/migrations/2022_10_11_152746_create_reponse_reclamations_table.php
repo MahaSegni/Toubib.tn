@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('reponse_reclamations', function (Blueprint $table) {
             $table->id();
             $table->text("reponse");
-            $table->timestamp("datereponse");
+            $table->dateTime("datereponse");
             $table->boolean('resolu')->nullable()->default(false);
-            
+
         });
     }
 
