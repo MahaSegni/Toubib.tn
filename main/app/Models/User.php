@@ -14,6 +14,9 @@ class User extends Authenticatable
     public function centre(){
         return $this->belongsTo(Centre::class);
     }
+    public function article(){
+        return $this->hasMany(Article::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
