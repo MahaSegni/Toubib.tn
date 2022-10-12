@@ -17,6 +17,12 @@ class User extends Authenticatable
     public function article(){
         return $this->hasMany(Article::class);
     }
+    public function note(){
+        return $this->hasMany(Note::class);
+    }
+    public function commentaire(){
+        return $this->hasMany(Commentaire::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

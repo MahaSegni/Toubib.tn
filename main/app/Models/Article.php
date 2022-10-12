@@ -14,4 +14,10 @@ class Article extends Model
     public function categorieArticle(){
         return $this->belongsTo(CategorieArticle::class);
     }
+    public function note(){
+        return $this->hasMany(Note::class);
+    }
+    public function commentaire(){
+        return $this->hasMany(Commentaire::class);
+    }
 }
