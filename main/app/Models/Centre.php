@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Centre extends Model
 {
+    protected $fillable = ['nom', 'gouvernorat', 'adresse','telephone','description'];
     use HasFactory;
     public function user(){
         return $this->hasOne(User::class);

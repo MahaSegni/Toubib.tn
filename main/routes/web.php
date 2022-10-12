@@ -20,4 +20,4 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('/admin/layout');
 });
-
+Route::resource('centres',\App\Http\Controllers\CentreController::class);
