@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class CategorieArticle extends Model
 {
     use HasFactory;
+    protected $fillable = ['libelle'];
     public function article(){
         return $this->hasMany(Article::class);
     }
