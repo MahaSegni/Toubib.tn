@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamps();
             $table->text('titre');
             $table->text('texte');
+            $table->text('auteur');
             $table->text('image');
             $table->text('video');
             $table->foreignId('categorie_article_id')
