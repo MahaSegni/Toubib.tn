@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\CategorieArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,4 +20,5 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('/admin/layout');
 });
+Route::resource('categorieArticle', CategorieArticleController::class);
 Route::resource('centres',\App\Http\Controllers\CentreController::class);
