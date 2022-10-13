@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategorieArticleController;
+use \App\Http\Controllers\ArticleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +22,6 @@ Route::get('/admin', function () {
     return view('/admin/layout');
 });
 Route::resource('categorieArticle', CategorieArticleController::class);
+Route::resource('article', ArticleController::class);
+
 Route::resource('centres',\App\Http\Controllers\CentreController::class);

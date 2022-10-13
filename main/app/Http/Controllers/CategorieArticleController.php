@@ -38,11 +38,15 @@ class CategorieArticleController extends Controller
     {
         $request->validate([
             'libelle'=>'required',
-        ]);
+        ],
+            [
+                'libelle.required' => 'Libelle obligatoire',
+            ]);
 
         $categorieArticle = new CategorieArticle([
             'libelle' => $request->get('libelle'),
         ]);
+
         $categorieArticle->save();
         return redirect('/categorieArticle')->with('success', 'CategorieArticle saved!');
     }
@@ -50,10 +54,10 @@ class CategorieArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CategorieArticle $cat
+     * @param  integer $cat
      * @return \Illuminate\Http\Response
      */
-    public function show(CategorieArticle $cat)
+    public function show(int $cat)
     {
         $categorieArticle = CategorieArticle::find($cat);
         return view('categorieArticle.show', compact('categorieArticle'));
@@ -68,7 +72,6 @@ class CategorieArticleController extends Controller
     public function edit(int $cat)
     {
         $categorieArticle = CategorieArticle::find($cat);
-
         return view('categorieArticle.edit', compact('categorieArticle'));
     }
 
@@ -83,7 +86,10 @@ class CategorieArticleController extends Controller
     {
         $request->validate([
             'libelle'=>'required',
-        ]);
+        ],
+            [
+                'libelle.required' => 'Libelle obligatoire',
+            ]);
 
         $categorieArticle = CategorieArticle::find($cat);
         $categorieArticle->libelle=  $request->get('libelle');
@@ -101,7 +107,6 @@ class CategorieArticleController extends Controller
     {
         $categorieArticle = CategorieArticle::find($cat);
         $categorieArticle->delete();
-
         return redirect('/categorieArticle')->with('success', 'CategorieArticle deleted!');
     }
 }
