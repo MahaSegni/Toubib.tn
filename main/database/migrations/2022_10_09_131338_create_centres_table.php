@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('adresse');
             $table->text('telephone');
             $table->text('description');
+            $table->text('image');
             $table->foreignId('user_id')
                 ->constrained();
             $table->timestamps();

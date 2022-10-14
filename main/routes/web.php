@@ -25,3 +25,7 @@ Route::resource('categorieArticle', CategorieArticleController::class);
 Route::resource('article', ArticleController::class);
 
 Route::resource('centres',\App\Http\Controllers\CentreController::class);
+Route::resource('services',\App\Http\Controllers\ServiceController::class);
+Route::get('services/create2/{id}',function($id){
+    return view("service.create",['centre_id'=>$id]);
+});

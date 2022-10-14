@@ -12,6 +12,7 @@
                         <th>Description</th>
                         <th>Modifier</th>
                         <th>Supprimer</th>
+                        <th>Visualiser</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -22,13 +23,20 @@
                         <td>{{$c->adresse}}</td>
                         <td>{{$c->telephone}}</td>
                         <td>{{$c->description}}</td>
-                        <td><a href = {{url('centres/'.$c->id.'/edit')}}>Modifier</a></td>
-                        <td><a href = {{route("centres.destroy",$c->id)}}>Supprimer</a></td>
+                        <td><button class="btn btn-success" type="submit"><a style="color: white" href = {{url('centres/'.$c->id.'/edit')}}>Modifier</a></button></td>
+                        <td>
+                            <form action="{{route("centres.destroy",$c->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit" style="color: white">Supprimer</button>
+                            </form>
+                        </td>
+                        <td><button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = {{url('centres/'.$c->id)}}>Visualiser</a></button></td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary" style="float: right;"><a href = {{route("centres.create")}}>Ajouter</a></button>
+            <button type="button" class="btn btn-primary" style="float: right;"><a style="color: white" href = {{route("centres.create")}}>Ajouter</a></button>
         </div>
     </div>
 

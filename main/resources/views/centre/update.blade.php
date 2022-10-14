@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-md-10 mx-auto">
-            <form class="w-75 mx-auto" method="post" action="{{ route('centres.update',$centre->id) }}">
+            <form class="w-75 mx-auto" method="post" action="{{ route('centres.update',$centre->id) }}" enctype="multipart/form-data">
                 {!! csrf_field() !!}
                 @method("PATCH")
                 <div class="form-group">
@@ -37,6 +37,11 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" class="form-control" name="image" value={{ $centre->image }} />
+                </div>
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

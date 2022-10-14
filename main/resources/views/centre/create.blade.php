@@ -2,7 +2,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-md-10 mx-auto">
-            <form class="w-75 mx-auto" method="post" action="{{ route('centres.store') }}">
+            <form class="w-75 mx-auto" method="post" action="{{ route('centres.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label for="nom">Nom</label>
@@ -31,6 +31,11 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input type="file" name="image" class="form-control" placeholder="image">
+                </div>
+
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
