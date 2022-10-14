@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Centre;
+use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class CentreController extends Controller
 {
@@ -38,6 +41,21 @@ class CentreController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nom'=>'required',
+            'gouvernorat'=>'required',
+            'adresse'=>'required',
+            'telephone'=>'required',
+            'description'=>'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $imagename = null;
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/imagesCentre/';
+            $imageCentre = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageCentre);
+            $imagename = "$imageCentre";
+        }
         $centre = new Centre();
         $centre->nom=$request->nom;
         $centre->gouvernorat=$request->gouvernorat;
@@ -45,7 +63,9 @@ class CentreController extends Controller
         $centre->telephone=$request->telephone;
         $centre->description=$request->description;
         $centre->user_id=$request->user;
+        $centre->image = $imagename;
         $centre->save();
+
         return redirect('/centres');
 
     }
@@ -58,7 +78,9 @@ class CentreController extends Controller
      */
     public function show($id)
     {
-        //
+        $centre = Centre::find($id);
+        $listServices = Service::where('centre_id',$id)->get();
+        return view("centre.show",["centre"=>$centre,"listServices"=>$listServices]);
     }
 
     /**
@@ -84,9 +106,28 @@ class CentreController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $imagename = null;
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/imagesCentre/';
+            $imageCentre = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageCentre);
+            $imagename = "$imageCentre";
+        }
         $centre = Centre::find($id);
-        $centre->update($request->all());
+        $centre->nom=$request->nom;
+        $centre->gouvernorat=$request->gouvernorat;
+        $centre->adresse=$request->adresse;
+        $centre->telephone=$request->telephone;
+        $centre->description=$request->description;
+        $centre->user_id=$request->user;
+        if($imagename){
+            $centre->image=$imagename;
+        }
+        $centre->save();
         return redirect('/centres');
+        /*$centre = Centre::find($id);
+        $centre->update($request->all());
+        return redirect('/centres');*/
     }
 
     /**
