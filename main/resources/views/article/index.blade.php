@@ -34,7 +34,12 @@
                         @else
                             <td></td>
                         @endif
-                        <td>{{$a->video}}</td>
+
+                        @if($a->video !=null)
+                            <td><video  controls width="200" src="{{asset('videos/videosArticle/'.$a->video)}}"/></td>
+                        @else
+                            <td></td>
+                        @endif
                         <td class="text-center">
                             <a href="{{ route('article.edit',$a->id)}}" class="btn btn-primary">Modifier</a>
                         </td>

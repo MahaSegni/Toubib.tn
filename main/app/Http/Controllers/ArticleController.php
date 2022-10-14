@@ -37,30 +37,43 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { $imagename=null;
+    {
+        $imagename=null;
+        $videoname=null;
         $request->validate([
             'titre'=>'required',
             'texte'=>'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'video' => 'mimetypes:video/mp4,video/mov,video/wmv,video/avi,video/avchd,video/flv,video/f4v,video/swf,video/mkv,video/webm,video/html5,video/mpeg-2|max:500000000',
         ],
         [
             'titre.required' => 'Titre obligatoire',
             'texte.required' => 'Texte obligatoire',
-        ]);
-        if ($image = $request->file('image')) {
+            'image' => 'Image doit etre de type: jpeg,png,jpg,gif ou svg ',
+            'video' => 'video doit etre de type: MP4,MOV,WMV,AVI,AVCHD,FLV,F4V,SWF,MKV,WEBM,HTML5 ou MPEG-2',
 
+        ]);
+
+        if ($image = $request->file('image')) {
             $destinationPath = 'images/imagesArticle/';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $imagename = "$profileImage";
             }
+
+        if ($video = $request->file('video')) {
+            $destinationPathVideo = 'videos/videosArticle/';
+            $profileVideo = date('YmdHis') . "." . $video->getClientOriginalExtension();
+            $video->move($destinationPathVideo, $profileVideo);
+            $videoname = "$profileVideo";
+        }
         $article = new Article([
             'user_id'=>1,
             'titre' => $request->get('titre'),
             'texte' => $request->get('texte'),
             'auteur' => $request->get('auteur'),
             'categorie_article_id' => $request->get('categorie_article_id'),
-            'video' => $request->get('video'),
+            'video' => $videoname,
             'image' => $imagename,
         ]);
         $article->save();
@@ -99,24 +112,43 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $article)
-    {
+    {   $imagename=null;
+        $videoname=null;
         $request->validate([
             'titre'=>'required',
             'texte'=>'required',
-            'image' => 'mimes:jpeg,png,jpg,gif,svg',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg',
+            'video' => 'mimetypes:video/mp4,video/mov,video/wmv,video/avi,video/avchd,video/flv,video/f4v,video/swf,video/mkv,video/webm,video/html5,video/mpeg-2',
         ],
             [
                 'titre.required' => 'Titre obligatoire',
                 'texte.required' => 'Texte obligatoire',
-                'image.mimes' => 'Image doit etre de type: jpeg,png,jpg,gif,svg ',
+                'image' => 'Image doit etre de type: jpeg,png,jpg,gif,svg ',
+                'video' => 'video doit etre de type: MP4,MOV,WMV,AVI,AVCHD,FLV,F4V,SWF,MKV,WEBM,HTML5 ou MPEG-2',
             ]);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/imagesArticle/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $imagename = "$profileImage";
+        }
+        if ($video = $request->file('video')) {
+            $destinationPathVideo = 'videos/videosArticle/';
+            $profileVideo = date('YmdHis') . "." . $video->getClientOriginalExtension();
+            $video->move($destinationPathVideo, $profileVideo);
+            $videoname = "$profileVideo";
+        }
 
         $article = article::find($article);
         $article->titre=  $request->get('titre');
         $article->texte= $request->get('texte');
         $article->auteur= $request->get('auteur');
-        $article->video= $request->get('video');
-        $article->image= $request->get('image');
+
+        if($imagename){
+            $article->image=$imagename;}
+        if($videoname){
+            $article->video=$videoname;}
         $article->save();
         return redirect('/article')->with('success', 'Article updated!');
     }

@@ -14,7 +14,7 @@
                 </div>
                 <br />
             @endif
-            <form method="post" action="{{ route('article.update', $article->id) }}">
+            <form method="post" action="{{ route('article.update', $article->id) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
                 <div class="form-group">
@@ -26,12 +26,43 @@
                     <input type="text" class="form-control" name="auteur" value={{ $article->auteur }} />
 
                     <label for="image">Image:</label>
-                    <input type="text" class="form-control" name="image" value={{ $article->image }} />
+                    <input type="file" name="image" class="form-control" placeholder="image" id="imgInp">
+                    @if($article->image)
+                        <img id="prview" src="{{asset('images/imagesArticle/'.$article->image )}}"  width=100 height=100 />
+                    @else
+                        <img id="prview" src=""  style="visibility:hidden"  width=100 height=100 />
+                    @endif
+
+                    <br>
                     <label for="video">Video:</label>
-                    <input type="text" class="form-control" name="video" value={{ $article->video }} />
+                    <input type="file" name="video" class="form-control" placeholder="video" id="vidInp">
+                    @if($article->video)
+                        <video  id="prviewVid" controls width="200" src="{{asset('videos/videosArticle/'.$article->video )}}"/>
+                    @else
+                        <video id="prviewVid" src="" controls  style="visibility:hidden"  width=200 />
+                    @endif
                 </div>
                 <button type="submit" class="btn btn-primary">Modifier</button>
             </form>
         </div>
     </div>
+
+    <script>
+        imgInp.onchange = evt => {
+            const [file] = imgInp.files
+            if (file) {
+                prview.style.visibility = 'visible';
+                prview.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+    <script>
+        vidInp.onchange = evt => {
+            const [file] = vidInp.files
+            if (file) {
+                prviewVid.style.visibility = 'visible';
+                prviewVid.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
 @endsection
