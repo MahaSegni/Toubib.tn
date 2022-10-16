@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class CategorieArticleController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -16,6 +18,11 @@ class CategorieArticleController extends Controller
     {
         $categoriesArticle = CategorieArticle::all();
         return view('categorieArticle.index', compact('categoriesArticle'));
+    }
+    public static function indexFront()
+    {
+       return  $categoriesArticle = CategorieArticle::all();
+
     }
 
     /**

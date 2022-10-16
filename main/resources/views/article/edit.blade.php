@@ -21,7 +21,7 @@
                     <label for="titre">Titre:</label>
                     <input type="text" class="form-control" name="titre" value={{ $article->titre }} />
                     <label for="texte">Texte:</label>
-                    <input type="text" class="form-control" name="texte" value={{ $article->texte }} />
+                    <textarea type="text" class="form-control" name="texte" > {{ $article->texte }}</textarea>
                     <label for="auteur">Auteur:</label>
                     <input type="text" class="form-control" name="auteur" value={{ $article->auteur }} />
 
