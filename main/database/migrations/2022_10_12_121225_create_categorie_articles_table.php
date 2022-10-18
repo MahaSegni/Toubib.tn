@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('categorie_articles')) {
+
         Schema::create('categorie_articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->text('libelle');
         });
-    }}
+    }
 
     /**
      * Reverse the migrations.

@@ -108,6 +108,10 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
+
+
+  @section("cover")
+
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <h1>Welcome to Medilab</h1>
@@ -116,6 +120,8 @@
     </div>
   </section><!-- End Hero -->
 
+  @endsection
+  @yield("cover")
   <main id="main">
 
   @yield('content')
