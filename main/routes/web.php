@@ -23,6 +23,9 @@ Route::get('/admin', function () {
 });
 Route::resource('categorieArticle', CategorieArticleController::class);
 Route::resource('article', ArticleController::class);
+Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
+Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
+
 
 Route::resource('centres',\App\Http\Controllers\CentreController::class);
 Route::resource('services',\App\Http\Controllers\ServiceController::class);
