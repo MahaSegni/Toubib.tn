@@ -23,12 +23,17 @@ Route::get('/admin', function () {
 });
 Route::resource('categorieArticle', CategorieArticleController::class);
 Route::resource('article', ArticleController::class);
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
 Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
-
-
 Route::resource('centres',\App\Http\Controllers\CentreController::class);
+});
+
 Route::resource('services',\App\Http\Controllers\ServiceController::class);
 Route::get('services/create2/{id}',function($id){
     return view("service.create",['centre_id'=>$id]);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
