@@ -13,7 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('articles')) {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -31,7 +30,7 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
         });
-    }}
+    }
 
     /**
      * Reverse the migrations.

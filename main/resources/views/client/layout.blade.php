@@ -10,24 +10,24 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assetsfront/img/favicon.png" rel="icon">
-  <link href="assetsfront/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{asset('assetsfront/img/favicon.png')}}" rel="icon">
+  <link href="{{asset('assetsfront/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assetsfront/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="assetsfront/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assetsfront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assetsfront/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assetsfront/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assetsfront/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assetsfront/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="assetsfront/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/glightbox/css/glightbox.min.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+  <link href="{{asset('assetsfront/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="assetsfront/css/style.css" rel="stylesheet">
+  <link href="{{asset('assetsfront/css/style.css')}}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Medilab - v4.9.0
@@ -87,6 +87,16 @@
               <li><a href="#">Drop Down 4</a></li>
             </ul>
           </li>
+            <li class="dropdown"><a href="#"><span>Categories articles</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                    @php
+                        $categoriesArticle=App\Http\Controllers\CategorieArticleController::indexFront();
+                    @endphp
+                    @foreach($categoriesArticle as $cat)
+                        <li><a href="{{ asset('/article/FindArticlesByCatFront/'.$cat->id) }}">{{$cat->libelle}}</a></li>
+                    @endforeach
+                </ul>
+            </li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -98,6 +108,10 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
+
+
+  @section("cover")
+
   <section id="hero" class="d-flex align-items-center">
     <div class="container">
       <h1>Welcome to Medilab</h1>
@@ -106,6 +120,8 @@
     </div>
   </section><!-- End Hero -->
 
+  @endsection
+  @yield("cover")
   <main id="main">
 
   @yield('content')
@@ -191,14 +207,14 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
-  <script src="assetsfront/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assetsfront/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assetsfront/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assetsfront/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assetsfront/vendor/php-email-form/validate.js"></script>
+  <script src="{{asset('assetsfront/vendor/purecounter/purecounter_vanilla.js')}}"></script>
+  <script src="{{asset('assetsfront/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{asset('assetsfront/vendor/glightbox/js/glightbox.min.js')}}"></script>
+  <script src="{{asset('assetsfront/vendor/swiper/swiper-bundle.min.js')}}"></script>
+  <script src="{{asset('assetsfront/vendor/php-email-form/validate.js')}}"></script>
 
   <!-- Template Main JS File -->
-  <script src="assetsfront/js/main.js"></script>
+  <script src="{{asset('assetsfront/js/main.js')}}"></script>
 
 </body>
 

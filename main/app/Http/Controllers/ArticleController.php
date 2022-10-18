@@ -93,6 +93,18 @@ class ArticleController extends Controller
     }
 
     /**
+     * showFront
+     *
+     * @param  integer  $a
+     * @return \Illuminate\Http\Response
+     */
+    public function showFront(int $a)
+    {
+        $article = Article::find($a);
+        return view('articleFront.show', compact('article'));
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  integer  $article
@@ -164,5 +176,18 @@ class ArticleController extends Controller
         $article = Article::find($article);
         $article->delete();
         return redirect('/article')->with('success', 'Article deleted!');
+    }
+
+    /**
+     * FindArticlesByCat
+     *
+     * @param  integer  $cat
+     * @return \Illuminate\Http\Response
+     */
+    public function FindArticlesByCatFront(int $cat)
+    {
+        $articles = Article::where('categorie_article_id', $cat)
+            ->get();
+        return view('articleFront.index', compact('articles'));
     }
 }
