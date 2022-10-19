@@ -67,8 +67,10 @@ class ArticleController extends Controller
             $video->move($destinationPathVideo, $profileVideo);
             $videoname = "$profileVideo";
         }
+
         $article = new Article([
-            'user_id'=>1,
+
+            'user_id'=>auth()->user()->id,
             'titre' => $request->get('titre'),
             'texte' => $request->get('texte'),
             'auteur' => $request->get('auteur'),

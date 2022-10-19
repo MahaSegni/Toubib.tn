@@ -21,12 +21,17 @@ Route::get('/', function () {
 Route::get('/admin', function () {
     return view('/admin/layout');
 });
-Route::resource('categorieArticle', CategorieArticleController::class);
-Route::resource('article', ArticleController::class);
+
+
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
+    Route::resource('categorieArticle', CategorieArticleController::class);
+    Route::resource('article', ArticleController::class);
+    Route::resource('centres',\App\Http\Controllers\CentreController::class);
+});
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
-Route::resource('centres',\App\Http\Controllers\CentreController::class);
+Route::middleware(['auth', 'user-access:user'])->group(function () {
+    Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
+
 });
 
 Route::resource('services',\App\Http\Controllers\ServiceController::class);
