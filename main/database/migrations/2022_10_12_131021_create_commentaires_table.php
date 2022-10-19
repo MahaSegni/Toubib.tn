@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('texte');
             $table->text('image');
+            $table->text('video');
             $table->timestamps();
             $table->foreignId('article_id')
                 ->constrained()
