@@ -10,9 +10,10 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
+
   <link href="{{asset('assetsfront/img/favicon.png')}}" rel="icon">
   <link href="{{asset('assetsfront/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
-
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -213,6 +214,8 @@
   <script src="{{asset('assetsfront/vendor/swiper/swiper-bundle.min.js')}}"></script>
   <script src="{{asset('assetsfront/vendor/php-email-form/validate.js')}}"></script>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <!-- Template Main JS File -->
   <script src="{{asset('assetsfront/js/main.js')}}"></script>
 

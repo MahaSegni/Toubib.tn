@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\CategorieArticleController;
 use \App\Http\Controllers\ArticleController;
+use \App\Http\Controllers\CommentaireController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +32,9 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
+    Route::post('/commentaire/supprimer/{commentaire}/{a}', [CommentaireController::class, 'supprimer'])->name("commentaire.supprimer");
+    Route::post('/commentaire/ajouter/{a}', [CommentaireController::class, 'ajouter']);
+    Route::post('/commentaire/modifier/{a}/{commmentaire}', [CommentaireController::class, 'update']);
 
 });
 
