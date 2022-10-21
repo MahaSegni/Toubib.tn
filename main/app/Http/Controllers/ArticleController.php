@@ -103,7 +103,8 @@ class ArticleController extends Controller
     public function showFront(int $a)
     {
         $article = Article::find($a);
-        return view('articleFront.show', compact('article'));
+        $commentaires = (new CommentaireController)->index($a);
+        return view('articleFront.show', compact('article','commentaires'));
     }
 
     /**
@@ -190,6 +191,7 @@ class ArticleController extends Controller
     {
         $articles = Article::where('categorie_article_id', $cat)
             ->get();
+
         return view('articleFront.index', compact('articles'));
     }
 }
