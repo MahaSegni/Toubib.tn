@@ -16,7 +16,7 @@ use \App\Http\Controllers\ArticleController;
 
 Route::get('/', function () {
     return view('/client/client');
-});
+})->name('home');
 
 Route::get('/admin', function () {
     return view('/admin/layout');
@@ -36,4 +36,4 @@ Route::get('services/create2/{id}',function($id){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+#Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
