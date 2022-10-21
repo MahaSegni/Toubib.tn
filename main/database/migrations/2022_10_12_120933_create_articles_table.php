@@ -12,7 +12,8 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
+    {               
+       
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -29,6 +30,7 @@ return new class extends Migration
                 ->constrained()
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+
         });
     }
 
