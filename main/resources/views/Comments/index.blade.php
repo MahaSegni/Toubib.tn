@@ -63,11 +63,11 @@
                 </p>
                 <div class="parent">
                     @if($c->image !=null)
-                        <img class="child " src="{{asset('images/imagesCommentaire/'.$c->image)}}" width="300"/>
+                        <img class="child " src="{{asset('images/imagesCommentaire/'.$c->image)}}" width="250" height="200"/>
 
                     @endif
                     @if($c->video !=null)
-                             <video class='child'  controls src="{{asset('videos/videosCommentaire/'.$c->video)}}" width="300"></video>
+                             <video class='child'  style="box-shadow: none" controls src="{{asset('videos/videosCommentaire/'.$c->video)}}" width="250" height="200"></video>
 
                     @endif
                 </div>
