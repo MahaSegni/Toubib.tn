@@ -66,12 +66,12 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="{{ asset('/') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-          
+
           <li class="dropdown"><a href="#"><span>Categories articles</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                     @php
@@ -86,7 +86,7 @@
           @auth
           <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              
+
               @if(Auth::user()->type=="center")
               <li><a href="/centre">Mon centre</a></li>
               @endif
@@ -107,11 +107,11 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-     
+
       @guest
       <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Se connecter</span></a>
       @endguest
-      
+
     </div>
   </header><!-- End Header -->
 
@@ -218,6 +218,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+
   <script src="{{asset('assetsfront/vendor/purecounter/purecounter_vanilla.js')}}"></script>
   <script src="{{asset('assetsfront/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assetsfront/vendor/glightbox/js/glightbox.min.js')}}"></script>
