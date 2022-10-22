@@ -82,7 +82,7 @@
                     @endforeach
                 </ul>
             </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('reclamations.create') }}">Réclamations</a></li>
           @auth
           <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
@@ -91,7 +91,9 @@
               <li><a href="/centre">Mon centre</a></li>
               @endif
               <li><a href="/profl">Profil</a></li>
-
+              <li>
+                <a href="/listeReclamation">Mes réclamations</a></li>
+             </li>
               <li><a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
@@ -101,6 +103,7 @@
              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                  @csrf
              </form></li>
+
             </ul>
           </li>
           @endauth
