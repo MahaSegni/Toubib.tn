@@ -53,8 +53,8 @@
             ?>
 
         <div class="parent">
-            <img  class="child" style="display:none"   id="prviewc" src=""  width=200 />
-           <div class="child"> <video  style="display:none"  id="prviewVidc" controls width="200" src=""/></div>
+            <img  class="child" style="display:none"   id="prviewc" src=""  width="200" height="150"/>
+           <div class="child"> <video  style="display:none"  id="prviewVidc" controls width="200" height="150" src=""/></div>
         </div>
         <div class="parent">
             <label id="labelimgc" for="imgInpc" >
@@ -74,7 +74,7 @@
 
         </div>
     </div>
-    <button class="btn right  blue-grey darken-4" style="margin-left: 100% !important;" type="submit"><i class="material-icons right">reply</i>Commenter</button>
+    <button class="btn right  blue-grey darken-4" style="margin-left: 90% !important;" type="submit"><i class="material-icons right">reply</i>Commenter</button>
 
     <script>
         imgInpc.onchange = evt => {
