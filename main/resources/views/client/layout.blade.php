@@ -71,7 +71,7 @@
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
-          
+
           <li class="dropdown"><a href="#"><span>Categories articles</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                     @php
@@ -82,16 +82,18 @@
                     @endforeach
                 </ul>
             </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('reclamations.create') }}">Réclamations</a></li>
           @auth
           <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              
+
               @if(Auth::user()->type=="center")
               <li><a href="/centre">Mon centre</a></li>
               @endif
               <li><a href="/profl">Profil</a></li>
-
+              <li>
+                <a href="/listeReclamation">Mes réclamations</a></li>
+             </li>
               <li><a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
@@ -101,17 +103,18 @@
              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                  @csrf
              </form></li>
+
             </ul>
           </li>
           @endauth
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-     
+
       @guest
       <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Se connecter</span></a>
       @endguest
-      
+
     </div>
   </header><!-- End Header -->
 
