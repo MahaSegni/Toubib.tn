@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReponseReclamations extends Model
 {
+
     use HasFactory;
 
 

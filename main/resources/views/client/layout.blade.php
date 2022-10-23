@@ -66,7 +66,7 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="{{ asset('/') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
           <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
@@ -82,16 +82,23 @@
                     @endforeach
                 </ul>
             </li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('reclamations.create') }}">Réclamations</a></li>
           @auth
           <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
 
+
               @if(Auth::user()->type=="centre")
               <li><a href="/showmycenter/{{ Auth::user()->id }}">Mon centre</a></li>
+
+              @if(Auth::user()->type=="center")
+              <li><a href="/centre">Mon centre</a></li>
+
               @endif
               <li><a href="/profl">Profil</a></li>
-
+              <li>
+                <a href="/listeReclamation">Mes réclamations</a></li>
+             </li>
               <li><a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
@@ -101,6 +108,7 @@
              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                  @csrf
              </form></li>
+
             </ul>
           </li>
           @endauth
@@ -218,6 +226,7 @@
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
+
   <script src="{{asset('assetsfront/vendor/purecounter/purecounter_vanilla.js')}}"></script>
   <script src="{{asset('assetsfront/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <script src="{{asset('assetsfront/vendor/glightbox/js/glightbox.min.js')}}"></script>

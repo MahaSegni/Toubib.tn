@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\CategorieArticle;
+use App\Models\Note;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -104,7 +105,8 @@ class ArticleController extends Controller
     {
         $article = Article::find($a);
         $commentaires = (new CommentaireController)->index($a);
-        return view('articleFront.show', compact('article','commentaires'));
+        $note=Note::where([['article_id','=', $a],['user_id','=', auth()->user()->id]])->first();
+        return view('articleFront.show', compact('article','commentaires','note'));
     }
 
     /**
