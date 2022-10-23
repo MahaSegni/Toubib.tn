@@ -55,7 +55,7 @@ class CentreController extends Controller
             'adresse'=>'required',
             'telephone'=>'required',
             'description'=>'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $imagename = null;
         if ($image = $request->file('image')) {
@@ -116,6 +116,13 @@ class CentreController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $request->validate([
+            'nom'=>'required',
+            'gouvernorat'=>'required',
+            'adresse'=>'required',
+            'telephone'=>'required',
+            'description'=>'required',
+        ]);
         $imagename = null;
         if ($image = $request->file('image')) {
             $destinationPath = 'images/imagesCentre/';
@@ -164,6 +171,13 @@ class CentreController extends Controller
 
     public function updatecenter(Request $request,$id)
     {
+        $request->validate([
+            'nom'=>'required',
+            'gouvernorat'=>'required',
+            'adresse'=>'required',
+            'telephone'=>'required',
+            'description'=>'required',
+        ]);
         $imagename = null;
         if ($image = $request->file('image')) {
             $destinationPath = 'images/imagesCentre/';
