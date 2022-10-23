@@ -45,13 +45,15 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::post('/commentaire/ajouter/{a}', [CommentaireController::class, 'ajouter']);
     Route::post('/commentaire/modifier/{a}/{commmentaire}', [CommentaireController::class, 'update']);
 
+    Route::post('/note/ajouter/{a}', [NoteController::class, 'ajouter']);
+    Route::post('/note/modifier/{a}/{note}', [NoteController::class, 'update']);
+    Route::post('/note/supprimer/{note}/{a}', [NoteController::class, 'supprimer'])->name("note.supprimer");
+
     Route::resource('reclamations', ReclamationsController::class);
     Route::get('/listeReclamation', [ReclamationsController::class, 'indexfront']);
     Route::get('/detailReclamation/{reclamation}', [ReponseReclamationController::class, 'show'])->name("reponse.show");
 
-    Route::post('/note/ajouter/{a}', [NoteController::class, 'ajouter']);
-    Route::post('/note/modifier/{a}/{note}', [NoteController::class, 'update']);
-    Route::post('/note/supprimer/{note}/{a}', [NoteController::class, 'supprimer'])->name("note.supprimer");
+
 
 
 

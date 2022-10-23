@@ -15,8 +15,8 @@ class CommentaireController extends Controller
      */
     public function index(int $a)
     {
-        $commentaires=Commentaire::Query()->where('article_id', $a)->with('user')->get();
-        return $commentaires;
+        return $commentaires=Commentaire::Query()->where('article_id', $a)->with('user')->get();
+
     }
 
     /**
