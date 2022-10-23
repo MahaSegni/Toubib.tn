@@ -42,7 +42,7 @@
                         </div>
                     @endforeach
                 </div>
-                <div>
+                <div class="my-2">
                     <button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = {{url('createcenterservice/'.$centre->id)}}>Ajouter un service</a></button>
                 </div>
             @endif

@@ -37,6 +37,10 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'libelle'=>'required',
+            'description'=>'required',
+        ]);
         $service = new Service();
         $service->libelle=$request->libelle;
         $service->description=$request->description;
@@ -77,6 +81,10 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'libelle'=>'required',
+            'description'=>'required',
+        ]);
         $service = Service::find($id);
         $service->update($request->all());
         return redirect('/centres/'.$request->centre_id);
@@ -99,6 +107,10 @@ class ServiceController extends Controller
     public function storeservice(Request $request)
     {
         //
+        $request->validate([
+            'libelle'=>'required',
+            'description'=>'required',
+        ]);
         $service = new Service();
         $service->libelle=$request->libelle;
         $service->description=$request->description;
@@ -114,6 +126,10 @@ class ServiceController extends Controller
 
     public function updateservice(Request $request, $id)
     {
+        $request->validate([
+            'libelle'=>'required',
+            'description'=>'required',
+        ]);
         $service = Service::find($id);
         $service->update($request->all());
         return redirect('/showmycenter/'.auth()->user()->id);
