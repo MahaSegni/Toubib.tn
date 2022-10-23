@@ -5,10 +5,15 @@ use \App\Http\Controllers\CategorieArticleController;
 use \App\Http\Controllers\ArticleController;
 use \App\Http\Controllers\CommentaireController;
 
+use \App\Http\Controllers\CentreController;
+use \App\Http\Controllers\ServiceController;
+
+
 use \App\Http\Controllers\ReclamationsController;
 use \App\Http\Controllers\ReponseReclamationController;
 
 use \App\Http\Controllers\NoteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +37,15 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('categorieArticle', CategorieArticleController::class);
     Route::resource('article', ArticleController::class);
-    Route::resource('centres',\App\Http\Controllers\CentreController::class);
+
+    Route::resource('centres',CentreController::class);
     Route::resource('reponse', ReponseReclamationController::class);
+});
+
+    
 
     Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
-   });
+
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
@@ -56,12 +65,24 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
 
 
 });
-
-Route::resource('services',\App\Http\Controllers\ServiceController::class);
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+Route::resource('services',ServiceController::class);
 Route::get('services/create2/{id}',function($id){
     return view("service.create",['centre_id'=>$id]);
 });
+});
 
+
+Route::get('/showmycenter/{userid}', [CentreController::class, 'showusercenter'])->name('showmycenter');
+Route::get('/editcenter/{id}', [CentreController::class, 'editcenter'])->name('editcenter');
+Route::patch('/updatecenter/{id}', [CentreController::class, 'updatecenter'])->name('updatecenter');
+Route::post('/storeservice/', [ServiceController::class, 'storeservice'])->name('storeservice');
+Route::get('/editservice/{id}', [ServiceController::class, 'editservice'])->name('editservice');
+Route::patch('/updateservice/{id}', [ServiceController::class, 'updateservice'])->name('updateservice');
+Route::delete('/destroyservice/{id}', [ServiceController::class, 'destroyservice'])->name('destroyservice');
+Route::get('createcenterservice/{id}',function($id){
+    return view("service.createservice",['centre_id'=>$id]);
+});
 Auth::routes();
 
 #Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

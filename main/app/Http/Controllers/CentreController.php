@@ -29,7 +29,15 @@ class CentreController extends Controller
      */
     public function create()
     {
-        $listUsers=User::all();
+        $listUsers=User::where('type','user')->get();
+        $listCentres=Centre::all();
+        for($i = 0;$i < count($listUsers);$i++){
+            for($j = 0;$j < count($listCentres);$j++){
+                if($listCentres[$j]->user_id == $listUsers[$i]->id){
+                    unset($listUsers[$i]);
+                }
+            }
+        }
         return view("centre.create",["listUsers" => $listUsers]);
     }
 
@@ -64,7 +72,11 @@ class CentreController extends Controller
         $centre->description=$request->description;
         $centre->user_id=$request->user;
         $centre->image = $imagename;
+
+        $user = User::find($request->user);
+        $user->type = 'centre';
         $centre->save();
+        $user->save();
 
         return redirect('/centres');
 
@@ -91,10 +103,8 @@ class CentreController extends Controller
      */
     public function edit($id)
     {
-        $listUsers=User::all();
         $centre = Centre::find($id);
-        $user=User::find($centre->user_id);
-        return view("centre.update",["centre"=>$centre,"listUsers" => $listUsers,"email"=>$user->email]);
+        return view("centre.update",["centre"=>$centre]);
     }
 
     /**
@@ -125,9 +135,6 @@ class CentreController extends Controller
         }
         $centre->save();
         return redirect('/centres');
-        /*$centre = Centre::find($id);
-        $centre->update($request->all());
-        return redirect('/centres');*/
     }
 
     /**
@@ -141,5 +148,40 @@ class CentreController extends Controller
         $centre = Centre::find($id);
         $centre->delete();
         return redirect('/centres');
+    }
+
+    public function showusercenter($userid){
+        $centre = Centre::where('user_id',$userid)->get()[0];
+        $listServices = Service::where('centre_id',$centre->id)->get();
+        return view("centre.centreshow",["centre"=>$centre,"listServices" => $listServices]);
+    }
+
+    public function editcenter($id){
+        $centre = Centre::find($id);
+        return view("centre.editcenter",["centre"=>$centre]);
+
+    }
+
+    public function updatecenter(Request $request,$id)
+    {
+        $imagename = null;
+        if ($image = $request->file('image')) {
+            $destinationPath = 'images/imagesCentre/';
+            $imageCentre = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $imageCentre);
+            $imagename = "$imageCentre";
+        }
+        $centre = Centre::find($id);
+        $centre->nom=$request->nom;
+        $centre->gouvernorat=$request->gouvernorat;
+        $centre->adresse=$request->adresse;
+        $centre->telephone=$request->telephone;
+        $centre->description=$request->description;
+        $centre->user_id=$request->user;
+        if($imagename){
+            $centre->image=$imagename;
+        }
+        $centre->save();
+        return redirect('/showmycenter/'.$centre->user_id);
     }
 }

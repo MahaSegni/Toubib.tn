@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class ServiceController extends Controller
 {
@@ -24,7 +25,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //return view("centre.create",["listUsers" => $listUsers]);
+
     }
 
     /**
@@ -94,4 +95,36 @@ class ServiceController extends Controller
         return redirect('/centres/'.$service->centre_id);
         //
     }
+
+    public function storeservice(Request $request)
+    {
+        //
+        $service = new Service();
+        $service->libelle=$request->libelle;
+        $service->description=$request->description;
+        $service->centre_id=$request->centre_id;
+        $service->save();
+        return redirect('/showmycenter/'.auth()->user()->id);
+    }
+    public function editservice($id)
+    {
+        $service = Service::find($id);
+        return view("service.updateservice",["service"=>$service]);
+    }
+
+    public function updateservice(Request $request, $id)
+    {
+        $service = Service::find($id);
+        $service->update($request->all());
+        return redirect('/showmycenter/'.auth()->user()->id);
+    }
+
+    public function destroyservice($id)
+    {
+        $service = Service::find($id);
+        $service->delete();
+        return redirect('/showmycenter/'.auth()->user()->id);
+        //
+    }
+
 }
