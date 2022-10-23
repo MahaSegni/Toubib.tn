@@ -90,10 +90,6 @@
 
               @if(Auth::user()->type=="centre")
               <li><a href="/showmycenter/{{ Auth::user()->id }}">Mon centre</a></li>
-
-              @if(Auth::user()->type=="center")
-              <li><a href="/centre">Mon centre</a></li>
-
               @endif
               <li><a href="/profl">Profil</a></li>
               <li>
