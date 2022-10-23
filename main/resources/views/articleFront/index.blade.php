@@ -13,6 +13,13 @@
                     @foreach($articles as $a)
                     <div class="col">
                         <div class="card shadow-sm">
+                            @php
+
+                                $note=App\Http\Controllers\NoteController::calculMoyenne($a->id);
+                            @endphp
+                            @if($note!=0)
+                            @include('note/indexMoyenne', ['note' => $note])
+                            @endif
                             @if($a->image !=null)
                                 <img src="{{asset('images/imagesArticle/'.$a->image)}}" width="100%" height="250">
                             @else

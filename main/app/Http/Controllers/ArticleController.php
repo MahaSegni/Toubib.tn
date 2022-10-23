@@ -105,7 +105,7 @@ class ArticleController extends Controller
     {
         $article = Article::find($a);
         $commentaires = (new CommentaireController)->index($a);
-        $note=Note::where([['article_id','=', $a],['user_id','=', auth()->user()->id]])->first();
+        $note= (new NoteController())->index($a);
         return view('articleFront.show', compact('article','commentaires','note'));
     }
 
@@ -191,8 +191,7 @@ class ArticleController extends Controller
      */
     public function FindArticlesByCatFront(int $cat)
     {
-        $articles = Article::where('categorie_article_id', $cat)
-            ->get();
+        $articles = Article::where('categorie_article_id', $cat)->get();
 
         return view('articleFront.index', compact('articles'));
     }

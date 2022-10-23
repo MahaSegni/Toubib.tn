@@ -10,11 +10,11 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function index()
+    public function index(int $a)
     {
-        //
+     return   $note=Note::where([['article_id','=', $a],['user_id','=', auth()->user()->id]])->first();
     }
 
     /**
@@ -119,5 +119,21 @@ class NoteController extends Controller
         $note = Note::find($note);
         $note->delete();
         return redirect('/article/showFront/'.$a)->with('success', 'note supprimmé!');
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param integer $a
+     * @return float
+     */
+    public static function calculMoyenne(int $a)
+
+    {
+        $noteMoyenne=Note::where('article_id', $a)->count();
+
+        if($noteMoyenne!=0)
+        {$noteMoyenne=Note::where('article_id', $a)->sum('note')/Note::where('article_id', $a)->count();}
+
+        return $noteMoyenne;
     }
 }
