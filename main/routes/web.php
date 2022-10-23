@@ -40,11 +40,11 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::resource('centres',CentreController::class);
     Route::resource('reponse', ReponseReclamationController::class);
+    Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
 });
 
-    
 
-    Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
+
 
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
