@@ -82,6 +82,8 @@ Route::post('/storeservice/', [ServiceController::class, 'storeservice'])->name(
 Route::get('/editservice/{id}', [ServiceController::class, 'editservice'])->name('editservice');
 Route::patch('/updateservice/{id}', [ServiceController::class, 'updateservice'])->name('updateservice');
 Route::delete('/destroyservice/{id}', [ServiceController::class, 'destroyservice'])->name('destroyservice');
+Route::get('/listcentres', [CentreController::class, 'listcentres'])->name('listcentres');
+Route::get('/usercentreshow/{id}', [CentreController::class, 'getrcenterbyid'])->name('usercentreshow');
 Route::get('createcenterservice/{id}',function($id){
     return view("service.createservice",['centre_id'=>$id]);
 });

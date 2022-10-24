@@ -15,13 +15,9 @@
                     <h5><b>Adresse : </b>{{$centre->adresse}}</h5>
                     <h5><b>Téléphone : </b>{{$centre->telephone}}</h5>
                 </div>
-                <div>
-                    <button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = {{url('editcenter/'.$centre->id)}}>Modifier mon centre</a></button>
-                </div>
                 <div class="mb-5">
                     <h1 style="text-align: center"><b>Nos Services</b></h1>
                 </div>
-
 
                 <div>
                     @foreach($listServices as $s)
@@ -32,19 +28,8 @@
                             <div class="col-12 mt-2">
                                 <p>{{$s->description}}</p>
                             </div>
-                            <div class="col-sm-12 d-flex flex-row justify-content-end">
-                                <button class="btn btn-success me-2" type="submit"><a style="color: white" href = {{url('editservice/'.$s->id)}}>Modifier</a></button>
-                                <form action="{{route("destroyservice",$s->id)}}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit" style="color: white">Supprimer</button>
-                                </form>
-                            </div>
                         </div>
                     @endforeach
-                </div>
-                <div class="my-2">
-                    <button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = {{url('createcenterservice/'.$centre->id)}}>Ajouter un service</a></button>
                 </div>
             @endif
         </div>
