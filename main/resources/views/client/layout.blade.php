@@ -89,6 +89,7 @@
             <ul>
 
 
+
               @if(Auth::user()->type=="centre")
               <li><a href="/showmycenter/{{ Auth::user()->id }}">Mon centre</a></li>
               @endif
@@ -116,7 +117,12 @@
       @guest
       <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Se connecter</span></a>
       @endguest
-
+      @auth
+      @if(Auth::user()->type=="user")
+      <a href="/medecin/create" class="appointment-btn scrollto"><span class="d-none d-md-inline">Vous êtes un médecin ?</span></a>
+      @endif
+      @endauth
+      
     </div>
   </header><!-- End Header -->
 
@@ -132,6 +138,9 @@
 
       <a href="/register" class="btn-get-started scrollto">S'inscrire</a>
       @endguest
+      
+
+      
 
     </div>
   </section><!-- End Hero -->
