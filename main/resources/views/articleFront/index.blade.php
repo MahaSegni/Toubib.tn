@@ -1,24 +1,39 @@
 @extends('client/layout')
+@section("cover")
+
+@endsection
 
 @section('content')
-    <main>
-
-        <div class="album py-5 bg-light">
+        <div class="album py-5 bg-light" style="margin-top: 100px">
             <div class="container">
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     @foreach($articles as $a)
                     <div class="col">
                         <div class="card shadow-sm">
+
                             @if($a->image !=null)
                                 <img src="{{asset('images/imagesArticle/'.$a->image)}}" width="100%" height="250">
                             @else
                                 <img src="{{asset('images/noImageAvailable.png')}}" width="100%" height="250">
                             @endif
                             <div class="card-body">
-                                <p class="text-capitalize">{{$a->titre}}</p>
+
+                                  <p class="text-capitalize">{{$a->titre}}</p>
+
                                 <p class="card-text col-12 text-truncate">{{$a->texte}}...</p>
+                                @php
+
+                                    $note=App\Http\Controllers\NoteController::calculMoyenne($a->id);
+                                @endphp
+                                @if($note!=0)
+                                   <div> @include('note/indexMoyenne', ['note' => $note])</div>
+                                @else
+                                    <div style="visibility: hidden"> @include('note/indexMoyenne', ['note' => $note])</div>
+                                @endif
+
                                 <div class="d-flex justify-content-between align-items-center">
+
                                     <a style="margin-left:0 !important;" href="{{asset('/article/showFront/'.$a->id)}}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Afficher la suite</span></a>
                                     <small class="text-muted">{{$a->created_at->format('Y-m-d')}}</small>
                                 </div>
@@ -30,7 +45,7 @@
             </div>
         </div>
 
-    </main>
+
 
 @endsection
 <style>
@@ -47,4 +62,6 @@
             font-size: 3.5rem;
         }
     }
+    .parent1 {text-align: start;}
+    .child1 {display: inline-block;vertical-align:top;}
 </style>

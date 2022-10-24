@@ -150,10 +150,10 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="fontawesome.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/listeReclamations"
                            aria-expanded="false">
                             <i class="fa fa-font" aria-hidden="true"></i>
-                            <span class="hide-menu">Icon</span>
+                            <span class="hide-menu">Réclamations</span>
                         </a>
                     </li>
                     <li class="sidebar-item">

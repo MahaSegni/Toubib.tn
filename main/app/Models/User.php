@@ -26,6 +26,9 @@ class User extends Authenticatable
     public function commentaire(){
         return $this->hasMany(Commentaire::class);
     }
+    public function reclamations(){
+        return $this->hasMany(reclamations::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
@@ -56,6 +59,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
-   
+
+
 }

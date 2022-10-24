@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reclamations', function (Blueprint $table) {
-            $table->id();
-            $table->string("objet");
-            $table->text("message");
-            $table->boolean('statut')->nullable()->default(false);
-            $table->dateTime("datecreation");
-            $table->text('image')->nullable();
-            $table->foreignId('user_id')
-                ->constrained();
-        });
-    }
+        if(!Schema::hasTable('reclamations')) {
+            Schema::create('reclamations', function (Blueprint $table) {
+                $table->id();
+                $table->timestamps();
+                $table->string('objet');
+                $table->text('message');
+                $table->boolean('statut')->nullable()->default(false);
+                $table->text('image')->nullable();
+                $table->foreignId('user_id')
+                    ->constrained();
+            });
+            }}
 
     /**
      * Reverse the migrations.
