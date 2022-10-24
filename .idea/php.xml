@@ -110,6 +110,7 @@
       <path value="$PROJECT_DIR$/main/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/main/vendor/symfony/polyfill-ctype" />
       <path value="$PROJECT_DIR$/main/vendor/symfony/mime" />
+      <path value="$PROJECT_DIR$/main/vendor/laravel/ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0" />

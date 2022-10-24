@@ -5,7 +5,8 @@
     }
 
     .Stars {
-        margin-left: 75%;
+        margin-bottom: 1%;
+        margin-left: 2%;
 
         --percent: calc(var(--rating) / 5 * 100%);
         color:black;

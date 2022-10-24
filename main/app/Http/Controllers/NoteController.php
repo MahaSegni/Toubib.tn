@@ -129,11 +129,11 @@ class NoteController extends Controller
     public static function calculMoyenne(int $a)
 
     {
-        $noteMoyenne=Note::where('article_id', $a)->count();
+        $noteCount=Note::where('article_id', $a)->count();
 
-        if($noteMoyenne!=0)
-        {$noteMoyenne=Note::where('article_id', $a)->sum('note')/Note::where('article_id', $a)->count();}
+        if($noteCount!=0)
+        {return $noteMoyenne=Note::where('article_id', $a)->sum('note')/$noteCount;}
 
-        return $noteMoyenne;
+        return $noteCount;
     }
 }

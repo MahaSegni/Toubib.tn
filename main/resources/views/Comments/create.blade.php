@@ -7,6 +7,15 @@
         vertical-align:middle;
 
     }
+
+    .parent1 {
+        text-align: start;
+    }
+    .child2 {
+        display: inline-block;
+        vertical-align:middle;
+
+    }
     #imgInpc ,#vidInpc{
         display: none;
 
@@ -21,6 +30,28 @@
     }
 
 </style>
+<div class="parent1">
+    <div class="child2 text-start" style="width: 10% ; margin-left: 2% !important;">
+        @php
+            $note=App\Http\Controllers\NoteController::calculMoyenne($article->id);
+        @endphp
+        @if($note!=0)
+
+            <div style="border: 2px solid whitesmoke;text-align: center;  padding-top:6%; padding-bottom:6%; background-color: #F5F5F5" >
+                <p style="font-family: Arial ;color:#FFCC00; text-align: center"  >{{$note}}/5</p>
+                @include('note/indexMoyenne', ['note' => $note])
+                <p style="font-family: Arial ;color:#1977CC; text-align: center"  >{{$count}} avis</p>
+            </div>
+
+        @else
+            <div style="visibility: hidden"> @include('note/indexMoyenne', ['note' => $note])</div>
+        @endif
+    </div>
+
+    <div class="child2" style="   width: 80% !important;">
+
+
+
 <form class="card-body p-4"  method="post" action="{{ asset('/commentaire/ajouter/'.$article->id) }}" enctype="multipart/form-data">
     @csrf
     <div class="d-flex flex-start">
@@ -35,7 +66,7 @@
             ?>
 
 
-            <h6 class="fw-bold mb-1">Alexa Bennett</h6>
+            <h6 class="fw-bold mb-1 text-start" style="margin-left:0%">Alexa Bennett</h6>
             <div class="d-flex align-items-center mb-3">
                 <p class="mb-0">
                     <?php $m=date("M")  ; $d=date("d"); $y=date("Y");?>
@@ -97,3 +128,6 @@
         }
     </script>
 </form>
+    </div>
+
+</div>
