@@ -6,8 +6,8 @@
     .child1 {
         display: inline-block;
         vertical-align:middle;
-
     }
+
     .container3 {
         border-radius:1%;
         border:1px solid #1977CC;
@@ -40,6 +40,7 @@
                             </form>
                         @endif
                     </div>
+
                     <h1 class=" child1 text-center mt-4 mb-4" style="margin-left:36%">
                         {{$article->titre}}
                         <small class="text-muted  "><h6>{{$article->created_at->format('Y-m-d')}}</h6></small>
@@ -68,14 +69,16 @@
                         </ul>
                     </div><br />
                 @endif
+
+
                 <hr class="my-0" />
-                @include('Comments/create', ['article' => $article])
+
+                @include('Comments/create', ['article' => $article,'count'=>$noteCount])
 
                 @include('Comments/index', ['article' => $article,'commentaires'=>$commentaires])
-
-
             </div>
         </div>
+
 
 
 

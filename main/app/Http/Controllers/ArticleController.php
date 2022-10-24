@@ -106,7 +106,8 @@ class ArticleController extends Controller
         $article = Article::find($a);
         $commentaires = (new CommentaireController)->index($a);
         $note= (new NoteController())->index($a);
-        return view('articleFront.show', compact('article','commentaires','note'));
+        $noteCount=Note::where('article_id', $a)->count();
+        return view('articleFront.show', compact('article','commentaires','note','noteCount'));
     }
 
     /**
