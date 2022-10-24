@@ -22,7 +22,7 @@
                     @enderror
                 </div>
                 <input type="hidden" value="{{$centre_id}}" name="centre_id">
-                <button type="submit" class="btn btn-primary my-2">Submit</button>
+                <button type="submit" class="btn btn-primary my-2">Confirmer</button>
             </form>
         </div>
     </div>
