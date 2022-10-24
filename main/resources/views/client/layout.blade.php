@@ -87,7 +87,7 @@
           <li class="dropdown"><a href="#"><span>Compte</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               
-              @if(Auth::user()->type=="center")
+              @if(Auth::user()->type=="centre")
               <li><a href="/centre">Mon centre</a></li>
               @endif
               <li><a href="/profl">Profil</a></li>
@@ -111,7 +111,11 @@
       @guest
       <a href="/login" class="appointment-btn scrollto"><span class="d-none d-md-inline">Se connecter</span></a>
       @endguest
-      
+      @auth
+      @if(Auth::user()->type=="user")
+      <a href="/medecin/create" class="appointment-btn scrollto"><span class="d-none d-md-inline">Vous êtes un médecin ?</span></a>
+      @endif
+      @endauth
     </div>
   </header><!-- End Header -->
 
@@ -127,6 +131,9 @@
 
       <a href="/register" class="btn-get-started scrollto">S'inscrire</a>
       @endguest
+      
+
+      
 
     </div>
   </section><!-- End Hero -->
