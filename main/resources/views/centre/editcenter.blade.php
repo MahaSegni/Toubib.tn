@@ -49,7 +49,7 @@
                 </div>
                 <input type="hidden" name="user" value="{{$centre->user_id}}">
 
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                <button type="submit" class="btn btn-primary mt-2">Confirmer</button>
             </form>
         </div>
     </div>

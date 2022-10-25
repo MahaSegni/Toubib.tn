@@ -10,6 +10,8 @@ use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\ReclamationsController;
 use \App\Http\Controllers\ReponseReclamationController;
 use \App\Http\Controllers\NoteController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -35,7 +37,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::get('/admin/medecin',[MedecinController::class,'showadmin']);
     Route::delete('/admin/medecin/delete/{medecin}',[MedecinController::class,'destroy']);
     Route::get('/admin/confirmermedecin/{medecin}',[MedecinController::class,'confirmer']);
-
+    Route::resource('produit', ProduitController::class);
+    Route::resource('categories', CategorieController::class);
     Route::resource('centres',CentreController::class);
     Route::resource('reponse', ReponseReclamationController::class);
     Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
@@ -81,6 +84,8 @@ Route::post('/storeservice/', [ServiceController::class, 'storeservice'])->name(
 Route::get('/editservice/{id}', [ServiceController::class, 'editservice'])->name('editservice');
 Route::patch('/updateservice/{id}', [ServiceController::class, 'updateservice'])->name('updateservice');
 Route::delete('/destroyservice/{id}', [ServiceController::class, 'destroyservice'])->name('destroyservice');
+Route::get('/listcentres', [CentreController::class, 'listcentres'])->name('listcentres');
+Route::get('/usercentreshow/{id}', [CentreController::class, 'getrcenterbyid'])->name('usercentreshow');
 Route::get('createcenterservice/{id}',function($id){
     return view("service.createservice",['centre_id'=>$id]);
 });
