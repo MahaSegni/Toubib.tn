@@ -24,7 +24,7 @@
                             @if ($reclamation->image != null)
                             <img src="{{ asset('images/imagesReclamations/'.$reclamation->image) }}" alt="tag" width="300px" height="300px">
                             @else
-                            <img src="{{ asset('images/imagesReclamations/R.png') }}" alt="tag" width="1000px" height="300px">
+                            <img src="{{ asset('images/imagesReclamations/R.png') }}" alt="tag" width="300px" height="300px">
                             @endif
                         </div>
                         <div class="form-group">

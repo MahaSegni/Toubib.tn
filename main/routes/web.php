@@ -35,7 +35,7 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('categorieArticle', CategorieArticleController::class);
     Route::resource('article', ArticleController::class);
 
-
+    Route::get('/reclamation/search/{statut}', [ReclamationsController::class, 'FindReclamationByStatut']);
     Route::get('/admin/medecin',[MedecinController::class,'showadmin']);
     Route::delete('/admin/medecin/delete/{medecin}',[MedecinController::class,'destroy']);
     Route::get('/admin/confirmermedecin/{medecin}',[MedecinController::class,'confirmer']);

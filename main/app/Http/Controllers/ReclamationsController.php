@@ -53,7 +53,7 @@ class ReclamationsController extends Controller
     { $imagename=null;
         $request->validate([
             'objet'=>'required',
-            'message'=>'required',
+            'message'=>'required|max:500',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],
         [
@@ -70,7 +70,7 @@ class ReclamationsController extends Controller
         $reclamation = new Reclamations();
         $reclamation->objet=$request->objet;
         $reclamation->message=$request->message;
-        $reclamation->user_id=1;
+        $reclamation->user_id=Auth::user()->id;
         $reclamation->created_at= date('Y-m-d H:i:s');
         $reclamation->statut= false;
         $reclamation->image = $imagename;
@@ -120,7 +120,7 @@ class ReclamationsController extends Controller
        $imagename=null;
         $request->validate([
             'objet'=>'required',
-            'message'=>'required',
+            'message'=>'required|max:500',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ],
         [
@@ -138,7 +138,7 @@ class ReclamationsController extends Controller
         $reclamation = Reclamations::find($reclamation);
         $reclamation->objet=$request->objet;
         $reclamation->message=$request->message;
-        $reclamation->user_id=1;
+        $reclamation->user_id=Auth::user()->id;
         $reclamation->updated_at= date('Y-m-d H:i:s');
         $reclamation->statut= false;
         $reclamation->image = $imagename;
@@ -160,5 +160,27 @@ class ReclamationsController extends Controller
         $reclamation->delete();
         return redirect('/listeReclamation')->with('success', 'reclamation deleted!');
 
+    }
+
+    /**
+     * FindReclamationByStatus
+     *  @param  int  $statut
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function FindReclamationByStatut($statut,Request $request)
+    {
+        $encours = Reclamations::whereStatut(0)->get();
+        $terminer = Reclamations::whereStatut(1)->get();
+        if($statut==0 ||$statut == 1 ){
+        $reclamations = Reclamations::where('statut',$statut)->get();}
+        else{
+            $reclamations = Reclamations::all();
+        }
+
+        return view ('reclamations.index',['reclamations' => $reclamations, 'encours'=> $encours, 'terminer'=>$terminer]);
+
+
+       //  return view('reclamations.index', compact('reclamations','statut','encours','terminer'));
     }
 }
