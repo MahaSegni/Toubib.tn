@@ -66,7 +66,7 @@
             ?>
 
 
-            <h6 class="fw-bold mb-1 text-start" style="margin-left:0%">Alexa Bennett</h6>
+            <h6 class="fw-bold mb-1 text-start" style="margin-left:0%">{{Auth::user()->name}}</h6>
             <div class="d-flex align-items-center mb-3">
                 <p class="mb-0">
                     <?php $m=date("M")  ; $d=date("d"); $y=date("Y");?>

@@ -31,10 +31,12 @@
                     <td>Video</td>
                     <td colspan =2 class="text-center">Actions</td>
                 </tr>
+
                 </thead>
                 <tbody>
 
                 @foreach($articles as $a)
+
                     <tr>
                         <td>{{$a->id}}</td>
                         <td>{{$a->titre}}</td>
@@ -61,8 +63,14 @@
                                 @method('DELETE')
                                 <button class="btn btn-danger" type="submit">Supprimer</button>
                             </form>
+
                         </td>
+
+
                     </tr>
+
+
+
                 @endforeach
                 </tbody>
             </table>
