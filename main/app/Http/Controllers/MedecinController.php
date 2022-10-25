@@ -20,6 +20,17 @@ class MedecinController extends Controller
         $listemed = DB::select('select * from users, medecins where users.id=medecins.user_id');
         return view('medecins.adminshow', compact('listemed'));
     }
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function show()
+    {
+        $medecin=Medecin::where('user_id',auth()->user()->id)->get()[0];
+                return view('medecins.show', compact('medecin'));
+    }
+
 
     /**
     * Show the form for creating a new resource.
@@ -72,9 +83,9 @@ class MedecinController extends Controller
     * @param  \App\Medecin  $Medecin
     * @return \Illuminate\Http\Response
     */
-    public function edit(Medecin $Medecin)
-    {
-        return view('medecins.edit',compact('Medecin'));
+    public function edit()
+    {           $medecin=Medecin::where('user_id',auth()->user()->id)->get()[0];
+        return view('medecins.edit',compact('medecin'));
     }
 
     /**
@@ -95,7 +106,7 @@ class MedecinController extends Controller
         
         $Medecin->fill($request->post())->save();
 
-        return redirect()->route('medecins.showadmin')->with('success','Medecin Has Been updated successfully');
+        return redirect('/espacemedecin')->with('success','Medecin Has Been updated successfully');
     }
 
     /**

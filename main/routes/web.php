@@ -12,6 +12,11 @@ use \App\Http\Controllers\ReponseReclamationController;
 use \App\Http\Controllers\NoteController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProduitController;
+use App\Http\Controllers\PatientController;
+
+use App\Http\Controllers\ficheController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -79,6 +84,17 @@ Route::resource('services',ServiceController::class);
 Route::get('services/create2/{id}',function($id){
     return view("service.create",['centre_id'=>$id]);
 });
+});
+Route::middleware(['auth', 'user-access:medecin'])->group(function () {
+    Route::get('/espacemedecin/mesinfromations',[MedecinController::class,'edit']);
+    Route::get('/espacemedecin',[MedecinController::class,'show']);
+
+    Route::patch('/espacemedecin/mesinfromation/edit/{medecin}',[MedecinController::class,'update']);
+    Route::resource('patient', PatientController::class);
+    Route::resource('fiche',ficheController::class);
+    Route::get('/pdfview/{idpatient}',[PatientController::class,'pdfview'])->name('pdfview');
+
+    
 });
 
 

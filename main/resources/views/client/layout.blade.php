@@ -94,10 +94,16 @@
               @if(Auth::user()->type=="centre")
               <li><a href="/showmycenter/{{ Auth::user()->id }}">Mon centre</a></li>
               @endif
-              <li><a href="/profl">Profil</a></li>
+              <li><a href="/profil">Profil</a></li>
+              @if(Auth::user()->type=="user")
               <li>
                 <a href="/listeReclamation">Mes réclamations</a></li>
              </li>
+             @endif
+             @if(Auth::user()->type=="medecin")
+             <li><a href="/espacemedecin">Mon Espace medecin</a></li>
+             @endif
+            
               <li><a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                               document.getElementById('logout-form').submit();">
