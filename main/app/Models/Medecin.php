@@ -12,6 +12,8 @@ class Medecin extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
-
+    public function patient(){
+        return $this->hasMany(Patient::class);
+    }
 
 }
