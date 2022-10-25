@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Medecin;
+
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -15,7 +17,7 @@ class MedecinController extends Controller
     */
     public function showadmin()
     {
-        $listemed = Medecin::all();
+        $listemed = DB::select('select * from users, medecins where users.id=medecins.user_id');
         return view('medecins.adminshow', compact('listemed'));
     }
 
@@ -93,7 +95,7 @@ class MedecinController extends Controller
         
         $Medecin->fill($request->post())->save();
 
-        return redirect()->route('medecins.index')->with('success','Medecin Has Been updated successfully');
+        return redirect()->route('medecins.showadmin')->with('success','Medecin Has Been updated successfully');
     }
 
     /**
@@ -103,8 +105,26 @@ class MedecinController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function destroy(Medecin $Medecin)
-    {
+    {   
         $Medecin->delete();
-        return redirect()->route('medecins.index')->with('success','Medecin has been deleted successfully');
+        return redirect('/admin/medecin')->with('success','Medecin has been deleted successfully');
     }
+
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Medecin  $Medecin
+    * @return \Illuminate\Http\Response
+    */
+    public function confirmer(Medecin $Medecin)
+    {   
+       $Medecin->confirm=true;
+       $u=User::find($Medecin->user_id);
+       $u->type='medecin';
+       $u->save();
+       $Medecin->save();
+       return redirect('/admin/medecin')->with('success','Medecin has been confirmed successfully');
+
+    }
+    
 }
