@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-sm-8 offset-sm-2">
             <h1 class="display-3">Ajouter article</h1>
-            <div>
+
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -12,6 +12,7 @@
                             @endforeach
                         </ul>
                     </div><br />
+
                 @endif
                 <form method="post" action="{{ route('article.store') }}" enctype="multipart/form-data">
                     @csrf
@@ -38,10 +39,9 @@
                         <video style="visibility:hidden"  id="prviewVid" controls width="200" src=""/>
 
                     </div>
-
-                    <button type="submit" class="btn btn-primary-outline">Ajouter</button>
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
                 </form>
-            </div>
+
         </div>
     </div>
 
