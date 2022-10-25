@@ -46,7 +46,7 @@
                 </div>
                 <input type="hidden" name="user" value="{{$centre->user_id}}">
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Confirmer</button>
             </form>
         </div>
     </div>

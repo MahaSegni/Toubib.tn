@@ -198,4 +198,15 @@ class CentreController extends Controller
         $centre->save();
         return redirect('/showmycenter/'.$centre->user_id);
     }
+
+    public function listcentres()
+    {
+        $listCentres=Centre::all();
+        return view("centre.listcentres",["listCentres" => $listCentres]);
+    }
+    public function getrcenterbyid($id){
+        $centre = Centre::find($id);
+        $listServices = Service::where('centre_id',$centre->id)->get();
+        return view("centre.usercentreshow",["centre"=>$centre,"listServices" => $listServices]);
+    }
 }
