@@ -15,8 +15,8 @@
         background-color: rgb(255,255,255);
         margin-top: 150px;
     }
-
 </style>
+
 @section("cover")
 @endsection
 @section('content')
@@ -26,15 +26,14 @@
                     <div class="child1">
                         @if($note!=null)
                             @include('note/modifier', ['article' => $article,'note'=>$note])
-
                         @else
                             @include('note/create', ['article' => $article])
                         @endif
-
                     </div>
+
                     <div class="child1">
                         @if($note!=null)
-                            <form action="{{ route('note.supprimer',["note"=>$note->id,"a"=>$article->id])}}" method="post">
+                            <form  action="{{ route('note.supprimer',["note"=>$note->id,"a"=>$article->id])}}" method="post">
                                 @csrf
                                 <button id="btn"  title="supprimer votre note "  type="submit"><i  class="fas fa-close text-danger ms-2"></i></button>
                             </form>
@@ -45,8 +44,8 @@
                         {{$article->titre}}
                         <small class="text-muted  "><h6>{{$article->created_at->format('Y-m-d')}}</h6></small>
                     </h1>
-
                 </div>
+
                 <div class="text-center mb-4">
                 @if($article->image !=null)
                     <img src="{{asset('images/imagesArticle/'.$article->image)}}" width="1000px" height="400px">
@@ -59,7 +58,6 @@
                 @endif
                 </div>
 
-
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -70,16 +68,9 @@
                     </div><br />
                 @endif
 
-
                 <hr class="my-0" />
-
                 @include('Comments/create', ['article' => $article,'count'=>$noteCount])
-
                 @include('Comments/index', ['article' => $article,'commentaires'=>$commentaires])
             </div>
         </div>
-
-
-
-
 @endsection

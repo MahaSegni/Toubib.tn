@@ -1,12 +1,24 @@
 @extends('admin/layout')
+@section("search")
+<li class=" in">
+    <form action="{{ route('article.index') }}" role="search" class="app-search d-none d-md-block me-3">
+        <input type="text" name="search" placeholder="Search..." class="form-control mt-0">
+        <a href="" class="active">
+            <i class="fa fa-search"></i>
+        </a>
+    </form>
+</li>
+@endsection
 
 @section('content')
+
     <div class="row">
         <div class="col-sm-12">
             <h1 class="display-3">Articles</h1>
             <div>
                 <a style="margin: 19px;" href="{{ route('article.create')}}" class="btn btn-primary">Ajouter article</a>
             </div>
+
             <table class="table table-striped">
                 <thead>
                 <tr>

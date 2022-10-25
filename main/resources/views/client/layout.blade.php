@@ -11,6 +11,7 @@
 
   <!-- Favicons -->
 
+
   <link href="{{asset('assetsfront/img/favicon.png')}}" rel="icon">
   <link href="{{asset('assetsfront/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -122,7 +123,7 @@
       <a href="/medecin/create" class="appointment-btn scrollto"><span class="d-none d-md-inline">Vous êtes un médecin ?</span></a>
       @endif
       @endauth
-      
+
     </div>
   </header><!-- End Header -->
 
@@ -138,9 +139,9 @@
 
       <a href="/register" class="btn-get-started scrollto">S'inscrire</a>
       @endguest
-      
 
-      
+
+
 
     </div>
   </section><!-- End Hero -->
