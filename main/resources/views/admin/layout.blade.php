@@ -142,7 +142,7 @@
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/categorieArticle"
                            aria-expanded="false">
                             <i class="fa fa-bars" aria-hidden="true"></i>
-                            <span class="hide-menu">Gestion Categorie Article</span>
+                            <span class="hide-menu">Categorie Article</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
@@ -187,19 +187,19 @@
                             <span class="hide-menu">Centres</span>
                         </a>
                     </li>
-                   
+
                     <li class="text-center p-20 upgrade-btn">
                         <a class="btn d-grid btn-danger text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                          {{ __('Logout') }}
                      </a>
-        
+
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                          @csrf
                      </form>
                     </li>
-        
+
                 </ul>
 
             </nav>

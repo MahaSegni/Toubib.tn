@@ -40,6 +40,7 @@
                         @endif
                     </div>
 
+
                     <h1 class=" child1 text-center mt-4 mb-4" style="margin-left:36%">
                         {{$article->titre}}
                         <small class="text-muted  "><h6>{{$article->created_at->format('Y-m-d')}}</h6></small>
