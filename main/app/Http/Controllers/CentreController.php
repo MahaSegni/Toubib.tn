@@ -7,6 +7,8 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\TemplateProcessor;
 
 
 class CentreController extends Controller
@@ -208,5 +210,39 @@ class CentreController extends Controller
         $centre = Centre::find($id);
         $listServices = Service::where('centre_id',$centre->id)->get();
         return view("centre.usercentreshow",["centre"=>$centre,"listServices" => $listServices]);
+    }
+
+    public function exportWord($id){
+        $centre = Centre::find($id);
+        $listServices = Service::where('centre_id',$centre->id)->get();
+        $phpWord = new PhpWord();
+        $section = $phpWord->addSection();
+        $nom = $centre->nom;
+        $gouvernorat = $centre->gouvernorat;
+        $adresse = $centre->adresse;
+        $telephone = $centre->telephone;
+        $description = $centre->description;
+        $fontStyle = array('bold' => true, 'size' => 20);
+        $fontStyle2 = array('bold' => false, 'size' => 12);
+        $fontStyle3 = array('bold' => true, 'size' => 12);
+        $paragraphStyle = array('align' => 'center');
+        $section->addText($nom, $fontStyle, $paragraphStyle);
+        $section->addText('Gouvernorat : '.$gouvernorat,$fontStyle2);
+        $section->addText('Adresse : '.$adresse,$fontStyle2);
+        $section->addText('Téléphone : '.$telephone,$fontStyle2);
+        $section->addText('Description : '.$description,$fontStyle2);
+        $section->addText('Nos services', $fontStyle, $paragraphStyle);
+        for($i = 0;$i < count($listServices);$i++){
+            $section->addText($listServices[$i]->libelle, $fontStyle, null);
+            $section->addText('Description : '.$listServices[$i]->description,$fontStyle2);
+        }
+        $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
+        try {
+            $objWriter->save(storage_path('centre.docx'));
+        } catch (Exception $e) {
+        }
+
+        return response()->download(storage_path('centre.docx'))->deleteFileAfterSend(true);
+
     }
 }

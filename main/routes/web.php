@@ -91,6 +91,7 @@ Route::patch('/updateservice/{id}', [ServiceController::class, 'updateservice'])
 Route::delete('/destroyservice/{id}', [ServiceController::class, 'destroyservice'])->name('destroyservice');
 Route::get('/listcentres', [CentreController::class, 'listcentres'])->name('listcentres');
 Route::get('/usercentreshow/{id}', [CentreController::class, 'getrcenterbyid'])->name('usercentreshow');
+Route::get('/exportword/{id}', [CentreController::class, 'exportword'])->name('exportword');
 Route::get('createcenterservice/{id}',function($id){
     return view("service.createservice",['centre_id'=>$id]);
 });
