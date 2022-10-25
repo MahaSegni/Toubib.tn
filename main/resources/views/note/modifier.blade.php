@@ -6,8 +6,6 @@
     <!-- (B) GENERATE STAR RATING HERE -->
     @csrf
     <div  id="demo"></div>
-
-
         <input name="note"   type="hidden" id="note" value="{{$note->note}}" />
 
     <button  type="submit"  id="submit" style="visibility:hidden;"></button>

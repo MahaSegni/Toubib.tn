@@ -34,6 +34,8 @@ Route::get('/admin', function () {
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('categorieArticle', CategorieArticleController::class);
     Route::resource('article', ArticleController::class);
+
+
     Route::get('/admin/medecin',[MedecinController::class,'showadmin']);
     Route::delete('/admin/medecin/delete/{medecin}',[MedecinController::class,'destroy']);
     Route::get('/admin/confirmermedecin/{medecin}',[MedecinController::class,'confirmer']);
@@ -42,19 +44,21 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('centres',CentreController::class);
     Route::resource('reponse', ReponseReclamationController::class);
     Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
+
 });
 
 
 
 
 Route::get('/article/FindArticlesByCatFront/{cat}', [ArticleController::class, 'FindArticlesByCatFront']);
+Route::get('/article/supprimerRecherche/{cat}', [ArticleController::class, 'supprimerRecherche']);
 Route::middleware(['auth', 'user-access:user'])->group(function () {
 
     Route::get('/article/showFront/{a}', [ArticleController::class, 'showFront']);
+
     Route::post('/commentaire/supprimer/{commentaire}/{a}', [CommentaireController::class, 'supprimer'])->name("commentaire.supprimer");
     Route::post('/commentaire/ajouter/{a}', [CommentaireController::class, 'ajouter']);
     Route::post('/commentaire/modifier/{a}/{commmentaire}', [CommentaireController::class, 'update']);
-    Route::resource('medecin', MedecinController::class);
 
     Route::post('/note/ajouter/{a}', [NoteController::class, 'ajouter']);
     Route::post('/note/modifier/{a}/{note}', [NoteController::class, 'update']);
@@ -64,6 +68,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/listeReclamation', [ReclamationsController::class, 'indexfront']);
     Route::get('/detailReclamation/{reclamation}', [ReponseReclamationController::class, 'show'])->name("reponse.show");
 
+    Route::resource('medecin', MedecinController::class);
 
 
 
