@@ -32,7 +32,7 @@
                     @endforeach
                 </div>
             <div class="my-2">
-                <button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = "{{ route('exportword',$centre->id) }}">Enregistrer Word</a></button>
+                <button class="btn btn-primary" type="submit" style="color: white"><a style="color: white" href = "{{ route('exportword',$centre->id) }}">Télécharger les informations</a></button>
             </div>
             @endif
         </div>
