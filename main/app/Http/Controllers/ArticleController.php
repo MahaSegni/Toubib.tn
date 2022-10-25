@@ -12,13 +12,21 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request  $request)
+    {      if ($request->get('search')) {
+        $articles=Article::Query()->where( 'titre', 'like', '%' . $request->get('search') . '%')->with('categorieArticle','user')->get();
+
+        } else {
         $articles = Article::with('categorieArticle','user')->get();
+        }
+
+
         return view('article.index', compact('articles'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -188,12 +196,30 @@ class ArticleController extends Controller
      * FindArticlesByCat
      *
      * @param  integer  $cat
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function FindArticlesByCatFront(int $cat)
+    public function FindArticlesByCatFront(int $cat,Request $request)
     {
+        if ($request->get('search')) {
+        $articles = Article::where([['titre', 'like', '%' . $request->get('search') . '%'],['categorie_article_id','=', $cat]])->get();
+    } else {
         $articles = Article::where('categorie_article_id', $cat)->get();
-
-        return view('articleFront.index', compact('articles'));
     }
+        return view('articleFront.index', compact('articles','cat'));
+    }
+
+    /**
+     *
+     * @param  integer  $cat
+     * @param \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function supprimerRecherche(int $cat,Request $request)
+    {
+        $request->merge(['search'=>null]);
+        return redirect('/article/FindArticlesByCatFront/'.$cat );
+    }
+
+
 }

@@ -24,7 +24,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-4 col-md-12">
                 <div class="white-box analytics-info">
-                    <h3 class="box-title">Totale Réclamations </h3>
+                    <h3 class="box-title"><a href="{{ asset('/reclamation/search/2') }}">Totale Réclamations </a></h3>
                     <ul class="list-inline two-part d-flex align-items-center mb-0">
                         <li>
                             <div id="sparklinedash"><canvas width="67" height="30"
@@ -41,7 +41,7 @@
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="white-box analytics-info">
-                    <h3 class="box-title">Réclamations traités</h3>
+                    <h3 class="box-title"><a href="{{ asset('/reclamation/search/1') }}">Réclamations traités</a></h3>
                     <ul class="list-inline two-part d-flex align-items-center mb-0">
                         <li>
                             <div id="sparklinedash2"><canvas width="67" height="30"
@@ -58,7 +58,7 @@
             </div>
             <div class="col-lg-4 col-md-12">
                 <div class="white-box analytics-info">
-                    <h3 class="box-title">Réclamations en cours</h3>
+                    <h3 class="box-title"><a href="{{ asset('/reclamation/search/0') }}">Réclamations en cours</a></h3>
                     <ul class="list-inline two-part d-flex align-items-center mb-0">
                         <li>
                             <div id="sparklinedash3"><canvas width="67" height="30"
@@ -85,12 +85,9 @@
                     <div class="d-md-flex mb-3">
                         <h3 class="box-title mb-0">Liste des réclamations </h3>
                            <div class="col-md-3 col-sm-4 col-xs-6 ms-auto">
-                            <select class="form-select shadow-none row border-top">
-                                <option>En cours</option>
-                                <option>Terminer</option>
-                                <option>Totale</option>
-
-                            </select>
+                        <!--    <form  action="{{ asset('/reclamation/search') }}" style="width:90% !important; margin-left:4%" >
+                                <input class="form-control py-2 border-right-0 border" type="date" name="search" value="{{ request('search') }}"  id="example-search-input">
+                            </form> -->
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -127,16 +124,26 @@
                                             @if ($reclamations->statut == 0)
                                                 <span style="color: red">en cours</span>
                                            @else
+
                                            <span style="color: green">Valider</span>
                                                 @endif
                                         </td>
                                         <td >
+                                            @if($reclamations->statut == 0)
                                             <a href="{{ route('reponse.edit',$reclamations->id)}}" >
                                                 <span class="fa-stack">
                                                     <i class="fa fa-square fa-stack-2x"></i>
                                                     <i class="fa fa-check fa-stack-1x fa-inverse"></i>
                                                 </span>
                                             </a>
+                                            @else
+                                            <a>
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-check fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                            @endif
                                             </td>
 
 

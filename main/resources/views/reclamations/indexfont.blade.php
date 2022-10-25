@@ -224,76 +224,85 @@
                                 <table class="table user-list">
 
                                     <tbody>
-                                        @foreach ($reclamations as $reclamations)
-                                            <tr>
-                                                <td>
-                                                    @if ($reclamations->image)
-                                                        <img src="{{ asset('images/imagesReclamations/' . $reclamations->image) }}"
-                                                            width=100 height=100 alt="">
-                                                    @else
-                                                        <img src="{{ asset('images/imagesReclamations/R.png') }}" width=100
-                                                            height=100 alt="">
-                                                    @endif
-                                                    <span class="user-subhead">Réclamation N° {{ $reclamations->id }}</span>
-                                                </td>
-                                                <td align="center" class="txt-oflo">{{ $reclamations->objet }}</td>
-                                                <td align="center" class="txt-oflo" colspan="2">
-                                                    {{ $reclamations->message }}</td>
-
-                                                <td align="center">
-                                                    {{ date('d-m-Y H:i', strtotime($reclamations->created_at)) }}
-                                                </td>
-                                                <td align="center" class="text-center ">
-                                                    @if ($reclamations->statut == 0)
-                                                        <span class="label label-danger" style="color: red">en cours</span>
-                                                    @else
-                                                        <span class="label label-default"
-                                                            style="color: green">Valider</span>
-                                                    @endif
-                                                </td>
-                                                @if ($reclamations->statut != 1)
-                                                    <td align="center">
-                                                        <a href="{{ route('reclamations.edit', $reclamations->id) }}"
-                                                            class="table-link">
-                                                            <span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
+                                        @if ($reclamations != [])
+                                            @foreach ($reclamations as $reclamations)
+                                                <tr>
+                                                    <td>
+                                                        @if ($reclamations->image)
+                                                            <img src="{{ asset('images/imagesReclamations/' . $reclamations->image) }}"
+                                                                width=100 height=100 alt="">
+                                                        @else
+                                                            <img src="{{ asset('images/imagesReclamations/R.png') }}"
+                                                                width=100 height=100 alt="">
+                                                        @endif
+                                                        <span class="user-subhead">Réclamation N°
+                                                            {{ $reclamations->id }}</span>
                                                     </td>
-                                                @else
+                                                    <td align="center" class="txt-oflo">{{ $reclamations->objet }}</td>
+                                                    <td align="center" class="txt-oflo" colspan="2">
+                                                        {{ $reclamations->message }}</td>
+
                                                     <td align="center">
-                                                        <a class="table-link" href="{{ route('reponse.show', $reclamations->id) }}">
-                                                            <span class="fa-stack" style="color: #969696">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa fa-info fa-stack-1x fa-inverse"></i>
-                                                            </span>
-                                                        </a>
+                                                        {{ date('d-m-Y H:i', strtotime($reclamations->created_at)) }}
                                                     </td>
-                                                @endif
-                                                <td align="center">
-                                                    <form action="{{ route('reclamations.destroy', $reclamations->id) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn" type="submit"><span class="fa-stack">
-                                                                <i class="fa fa-square fa-stack-2x"></i>
-                                                                <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-                                                            </span></button>
-                                                    </form>
-                                                </td>
+                                                    <td align="center" class="text-center ">
+                                                        @if ($reclamations->statut == 0)
+                                                            <span class="label label-danger" style="color: red">en
+                                                                cours</span>
+                                                        @else
+                                                            <span class="label label-default"
+                                                                style="color: green">Valider</span>
+                                                        @endif
+                                                    </td>
+                                                    @if ($reclamations->statut != 1)
+                                                        <td align="center">
+                                                            <a href="{{ route('reclamations.edit', $reclamations->id) }}"
+                                                                class="table-link">
+                                                                <span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
+                                                    @else
+                                                        <td align="center">
+                                                            <a class="table-link"
+                                                                href="{{ route('reponse.show', $reclamations->id) }}">
+                                                                <span class="fa-stack" style="color: #969696">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa fa-info fa-stack-1x fa-inverse"></i>
+                                                                </span>
+                                                            </a>
+                                                        </td>
+                                                    @endif
+                                                    <td align="center">
+                                                        <form
+                                                            action="{{ route('reclamations.destroy', $reclamations->id) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn" type="submit"><span class="fa-stack">
+                                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                                    <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+                                                                </span></button>
+                                                        </form>
+                                                    </td>
 
 
-                                            </tr>
-
-
-
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                        @if ($reclamations == [])
+                                            <br>
+                                            <span class="user-subhead">Vous n'avez aucune réclamation </span>
+                                        @endif
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                        @endforeach
-                        </tbody>
-                        </table>
                     </div>
-
+                </div>
+            </div>
+        </div>
     </main>
 @endsection

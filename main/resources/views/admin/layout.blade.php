@@ -84,6 +84,7 @@
                     <!-- ============================================================== -->
                     <!-- Search -->
                     <!-- ============================================================== -->
+                    @section("search")
                     <li class=" in">
                         <form role="search" class="app-search d-none d-md-block me-3">
                             <input type="text" placeholder="Search..." class="form-control mt-0">
@@ -92,6 +93,8 @@
                             </a>
                         </form>
                     </li>
+                  @endsection
+                    @yield("search")
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
@@ -138,14 +141,14 @@
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/categorieArticle"
                            aria-expanded="false">
-                            <i class="fa fa-table" aria-hidden="true"></i>
-                            <span class="hide-menu">Gestion Categorie Article</span>
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            <span class="hide-menu">Categorie Article</span>
                         </a>
                     </li>
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/article"
                            aria-expanded="false">
-                            <i class="fa fa-table" aria-hidden="true"></i>
+                            <i class="fa fa-book"></i>
                             <span class="hide-menu">Article</span>
                         </a>
                     </li>
@@ -184,19 +187,19 @@
                             <span class="hide-menu">Centres</span>
                         </a>
                     </li>
-                   
+
                     <li class="text-center p-20 upgrade-btn">
                         <a class="btn d-grid btn-danger text-white" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                       document.getElementById('logout-form').submit();">
                          {{ __('Logout') }}
                      </a>
-        
+
                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                          @csrf
                      </form>
                     </li>
-        
+
                 </ul>
 
             </nav>
