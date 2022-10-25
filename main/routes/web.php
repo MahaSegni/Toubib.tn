@@ -10,6 +10,8 @@ use \App\Http\Controllers\ServiceController;
 use \App\Http\Controllers\ReclamationsController;
 use \App\Http\Controllers\ReponseReclamationController;
 use \App\Http\Controllers\NoteController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,7 +35,8 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
     Route::resource('categorieArticle', CategorieArticleController::class);
     Route::resource('article', ArticleController::class);
     Route::get('/admin/medecin',[MedecinController::class,'showadmin']);
-
+    Route::resource('produit', ProduitController::class);
+    Route::resource('categories', CategorieController::class);
     Route::resource('centres',CentreController::class);
     Route::resource('reponse', ReponseReclamationController::class);
     Route::get('/listeReclamations', [ReclamationsController::class, 'index']);
