@@ -184,11 +184,19 @@
                             <span class="hide-menu">Centres</span>
                         </a>
                     </li>
+                   
                     <li class="text-center p-20 upgrade-btn">
-                        <a href="https://www.wrappixel.com/templates/ampleadmin/"
-                           class="btn d-grid btn-danger text-white" target="_blank">
-                            Upgrade to Pro</a>
+                        <a class="btn d-grid btn-danger text-white" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                      document.getElementById('logout-form').submit();">
+                         {{ __('Logout') }}
+                     </a>
+        
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                         @csrf
+                     </form>
                     </li>
+        
                 </ul>
 
             </nav>
