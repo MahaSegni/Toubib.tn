@@ -24,7 +24,6 @@
                             <hr>
                             <h4 style="color: black"> Réponse : </h4>
                             @foreach ($reclamation as $reclamation)
-
                             <p class="text-capitalize">{{$reclamation->reponse }}</p>
             @endforeach
                         </div>
