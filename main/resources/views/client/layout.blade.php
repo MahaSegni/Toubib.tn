@@ -68,10 +68,17 @@
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a class="nav-link scrollto active" href="{{ asset('/') }}">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#departments">Departments</a></li>
-          <li><a class="nav-link scrollto" href="#doctors">Doctors</a></li>
+          <li class="dropdown"><a href="#"><span>Produit Par Categorie</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              @php
+              $categories_produit=App\Models\Categorie::All();
+              @endphp
+                @foreach($categories_produit as $cat)
+
+                    <li><a href={{"/produitfront/".$cat->id }}>{{$cat->libelle}}</a></li>
+                @endforeach
+            </ul>
+        </li>
           <li><a class="nav-link scrollto" href="{{route("listcentres")}}">Centres</a></li>
 
           <li class="dropdown"><a href="#"><span>Categories articles</span> <i class="bi bi-chevron-down"></i></a>
@@ -94,7 +101,7 @@
               @if(Auth::user()->type=="centre")
               <li><a href="/showmycenter/{{ Auth::user()->id }}">Mon centre</a></li>
               @endif
-              <li><a href="/profil">Profil</a></li>
+              
               @if(Auth::user()->type=="user")
               <li>
                 <a href="/listeReclamation">Mes réclamations</a></li>

@@ -16,7 +16,6 @@ use App\Http\Controllers\PatientController;
 
 use App\Http\Controllers\ficheController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,7 +96,7 @@ Route::middleware(['auth', 'user-access:medecin'])->group(function () {
     
 });
 
-
+Route::get('/produitfront/{id}',[ProduitController::class,'indexFront']);
 Route::get('/showmycenter/{userid}', [CentreController::class, 'showusercenter'])->name('showmycenter');
 Route::get('/editcenter/{id}', [CentreController::class, 'editcenter'])->name('editcenter');
 Route::patch('/updatecenter/{id}', [CentreController::class, 'updatecenter'])->name('updatecenter');
