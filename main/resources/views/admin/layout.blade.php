@@ -98,12 +98,7 @@
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
-                    <li>
-                        <a class="profile-pic" href="#">
-
-                            <img src="{{ asset('assetsbackend/plugins/images/users/varun.jpg') }}" alt="user-img" width="36"
-                                 class="img-circle"><span class="text-white font-medium">Steave</span></a>
-                    </li>
+                    
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
@@ -125,19 +120,13 @@
                 <ul id="sidebarnav">
                     <!-- User Profile-->
                     <li class="sidebar-item pt-2">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#"
                            aria-expanded="false">
                             <i class="far fa-clock" aria-hidden="true"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="profile.html"
-                           aria-expanded="false">
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                            <span class="hide-menu">Profile</span>
-                        </a>
-                    </li>
+                    
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/categorieArticle"
                            aria-expanded="false">
@@ -160,26 +149,27 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="map-google.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/categories"
                            aria-expanded="false">
                             <i class="fa fa-globe" aria-hidden="true"></i>
-                            <span class="hide-menu">Google Map</span>
+                            <span class="hide-menu">Categorie Produit </span>
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="blank.html"
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/produit"
+                           aria-expanded="false">
+                            <i class="fa fa-globe" aria-hidden="true"></i>
+                            <span class="hide-menu"> Produit </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/medecin"
                            aria-expanded="false">
                             <i class="fa fa-columns" aria-hidden="true"></i>
-                            <span class="hide-menu">Blank Page</span>
+                            <span class="hide-menu">Medecin</span>
                         </a>
                     </li>
-                    <li class="sidebar-item">
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="404.html"
-                           aria-expanded="false">
-                            <i class="fa fa-info-circle" aria-hidden="true"></i>
-                            <span class="hide-menu">Error 404</span>
-                        </a>
-                    </li>
+                    
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('centres/')}}"
                            aria-expanded="false">

@@ -20,6 +20,16 @@ class ProduitController extends Controller
         return view('produit.index', compact('produits'));
     }
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexFront(int $id)
+    {
+        $produits = Produit::where('categorie_id',$id)->get();
+        return view('produit.indexfront', compact('produits'));
+    }
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

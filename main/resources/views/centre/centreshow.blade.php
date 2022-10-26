@@ -1,4 +1,7 @@
 @extends('client/layout')
+@section('cover')
+    <div style="margin: 150px 0px "></div>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-sm-12 col-md-10 mx-auto">
