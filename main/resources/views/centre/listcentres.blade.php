@@ -12,7 +12,9 @@
                             <img src="{{ asset('images/imagesCentre/'.$centre->image) }}" alt="centre">
                             <div class="card-body">
                                 <h5 class="card-title"><b>{{$centre->nom}}</b></h5>
-                                <p class="card-text">{{$centre->description}}</p>
+                                <h6>Gouvernorat : {{$centre->gouvernorat}}</h6>
+                                <h6>Adresse : {{$centre->adresse}}</h6>
+                                <h6>Téléphone : {{$centre->telephone}}</h6>
                                 <a href={{route("usercentreshow",$centre->id)}} class="btn btn-primary">Consulter</a>
                             </div>
                         </div>
